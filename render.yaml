@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: playlist-report
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>听歌报告入口</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="stage">
+    <header class="hero">
+      <p class="kicker">Playlist Atelier</p>
+      <h1>听歌报告入口</h1>
+      <p class="lede">把公开歌单链接贴进来，先核对曲目与首数。核对完点「开始分析」，出含风格、常听的人与年代的统计报告；人格卡为付费占位。</p>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="fetch-title">
+        <h2 id="fetch-title" class="sr-only">获取歌单</h2>
+        <label class="label" for="source">歌单链接，或「歌名 - 歌手」文本</label>
+        <textarea id="source" name="source" rows="5" placeholder="例如：
+https://music.163.com/#/playlist?id=3778678
+或每行一首：
+海阔天空 - Beyond
+夜的钢琴曲 - 石进"></textarea>
+
+        <div class="hint-row">
+          <p>支持网易云、QQ 音乐公开歌单直拉；<span class="beta">汽水 beta</span> 走分享页，失败请改贴文本。</p>
+          <p class="kugou">酷狗不支持链接直拉：请贴「歌名 - 歌手」，或先到 <a href="https://music.unmeta.cn/" target="_blank" rel="noopener noreferrer">music.unmeta.cn</a> 转换。</p>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn primary" id="btn-fetch">获取歌单</button>
+          <span class="status" id="status" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <p class="error" id="error" hidden></p>
+
+      <section class="panel result" id="result" hidden>
+        <div class="result-head">
+          <div>
+            <p class="meta" id="result-meta"></p>
+            <h2 id="result-title"></h2>
+            <p class="count" id="result-count"></p>
+          </div>
+          <button type="button" class="btn gold" id="btn-analyze">开始分析</button>
+        </div>
+        <p class="warning" id="result-warning" hidden></p>
+        <div class="report" id="report" hidden></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-idx">#</th>
+                <th>歌名</th>
+                <th>歌手</th>
+                <th class="col-album">专辑</th>
+              </tr>
+            </thead>
+            <tbody id="track-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>只读取公开分享页或无需自制签名的公开查询接口。私密歌单无法拉取。</p>
+    </footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
